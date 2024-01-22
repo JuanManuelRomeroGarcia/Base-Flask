@@ -4,7 +4,8 @@ Bienvenido a nuestro proyecto Flask Base, un marco fundamental para el futuro de
 
 Principales características:
 
-Base de datos automatizada con usuario administrador: El proyecto incluye una base de datos configurada automáticamente al instalación. Está diseñado para la eficiencia y la seguridad, con un usuario administrador preestablecido, simplificando la gestión y mantenimiento del sistema.
+Base de datos automatizada con usuario administrador: 
+El proyecto incluye una base de datos configurada automáticamente al instalación. Está diseñado para la eficiencia y la seguridad, con un usuario administrador preestablecido, simplificando la gestión y mantenimiento del sistema.
 
 Panel administrativo avanzado: 
 El panel de administración intuitivo y completo permite un usuario eficiente, Administración de funciones y configuración del sistema, proporcionando control total sobre operación y seguridad del proyecto.
