@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-width: 100%;
+        }
+        .header {
+            background: #000000;
+            text-align: center;
+        }
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+        }
+        .wrapper-inner {
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .footer {
+            background: #000000;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .image-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-gap: 10px;
+            }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+        }
+        @media only screen and (max-width: 620px) {
+            .wrapper-inner {
+                width: 90%;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <table class="wrapper">
+        <tr>
+            <td>
+                <div class="wrapper-inner">
+                    <div class="header text-center">
+                        <img class="navbar-brand logox" style="width: 150px;" src="https://xiaohack.es/static/img/logo.png" alt="Base Flask Logo">
+
+                    </div>
+                    <div class="content">
+                        <table style="font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif">
+                            <tbody>
+                                <tr>
+                                    {{ content|safe }}
+                                </tr>
+                                <tr>
+                                    {{ images|safe }} 
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                       
+                        
+                    </div>
+                    <table align="center" bgcolor="" style="text-decoration:none;color:#000;font-size:small ; align-items: center;">
+                       
+                        <tbody>
+                            
+                            <tr>
+                                <td>
+                                <table bgcolor="" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                            <table style="font-family:'Helvetica Neue','Helvetica',Helvetica,Arial,sans-serif">
+                                                <tbody>
+                                                    <tr>
+                                                        <td align="center" colspan="3">
+                                                            <img class="navbar-brand logox" style="width: 150px;" src="https://xiaohack.es/static/img/logo.png" alt="Base Flask Logo">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td  align="center" colspan="3">
+                                                        <p>Síguenos en las redes</p>
+                    
+                                                        <p>
+                                                            <a href="" style="text-decoration:none" target="_blank" > 
+                                                                <img border="0" height="30px" src="https://img.freepik.com/psd-gratis/cuadrado-3d-logotipo-facebook_125540-1565.jpg?size=626&ext=jpg" width="30px" class="CToWUd" data-bit="iit"> &nbsp; </a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td align="center">
+                                                        <p>Suscríbete a nuestro canal de Telegram</p>
+                    
+                                                        <p>
+                                                            <a href="" style="text-decoration:none" target="_blank" >
+                                                                <img border="0" height="30px" src="https://banner2.cleanpng.com/20180910/jxc/kisspng-…r-icons-5b96a6ff90fac0.1347926615365998075938.jpg" width="30px" class="CToWUd" data-bit="iit"></a>
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td align="center">&nbsp;
+                                                        <p>
+                                                            <a href="" style="color:#000" target="_blank" >AVISO LEGAL </a> | 
+                                                            <a href="" style="color:#000" target="_blank" >POLÍTICA Y PRIVACIDAD DE DATOS</a> |&nbsp;
+                                                            <a href="" style="color:#000" target="_blank">CONTACTA</a>
+
+                                                        </p>
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td align="center">
+                                                        <p>La información contenida en este correo está legalmente protegida.</p>
+                                                        <p>En caso de que lo hayas recibido por error, por favor elimínalo.</p>
+                                                        <p>Ten en cuenta que este es un mensaje automático, por lo que si lo respondes no recibirás ninguna contestación.</p>
+                                                        </td>
+                                                        <td>&nbsp;</td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <div class="footer">
+                            © 2023 Base Flask. Todos los derechos reservados.
+                        </div>
+                    </table>
+                    
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

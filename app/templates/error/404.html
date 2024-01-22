@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+    {{ super() }}
+
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+{% endblock %}
+
+
+{% block title %}
+ {{ super() }}
+{% endblock %}
+
+
+{% block app_content %}
+<div class="container">
+    <div class="text-center titulo">
+        <h1>Error 404</h1>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body text-center">
+            <div class="alert alert-danger" role="alert">
+                {% if name != '' %}
+                    {{ name }} not found
+                {% else %}
+                    {{ _("The page you are looking for does not exist.") }}
+                    <br/>
+                    <!-- Mostrar la URL que causó el error 404 -->
+                    {% if url_not_found %}
+                        <small>{{ _("URL:") }} {{ url_not_found }}</small>
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% if url_new %}
+                <div class="alert alert-info">
+                    <small>
+                        {{ _("It appears that the page has moved. Please visit: ") }}
+                        <a class="btn navbar-brand" href="{{ url_new }}">{{ _('New url') }}</a>
+                    </small>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mb-3 text-center">
+        <input id="volver" type="button" class="btn navbar-brand" value="{{ _('Go Back') }}" />
+    </div>
+</div>
+<script nonce="{{csp_nonce()}}">
+    document.addEventListener('DOMContentLoaded', function() {
+      var backButton = document.getElementById('volver');
+      if (backButton) {
+          backButton.addEventListener('click', function() {
+              history.back(-1);
+          });
+      }
+    });
+    </script>
+{% endblock %}

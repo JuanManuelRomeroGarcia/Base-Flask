@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        {% block head_css %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="Base de muestra para empezar proyectos">
+            <meta name="keywords" content="APP">
+            <meta name="author" content="Juan Manuel Romero García">
+            <meta name="robots" content="index, follow"> <!-- Esto permite que los motores de búsqueda indexen y sigan los enlaces de tu página -->
+            <meta property="og:title" content="Base Flask"> <!-- Para compartir en redes sociales -->
+            <meta property="og:description" content="Interfaz Web APP"> <!-- Descripción para redes sociales -->
+            <meta property="og:image" content="{{ url_for('static', filename='img/logo.png') }}"> 
+            <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/logo.ico') }}">
+
+        {% endblock %}
+
+        {% block styles %}
+        
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="{{ url_for('static', filename='js/languaje.js') }}"></script>
+        
+            <!-- Bootstrap CSS -->
+            {{ bootstrap.load_css() }}
+            <!-- Base CSS -->
+                <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+                <link rel="icon" href="{{ url_for('static', filename='img/logo.ico') }}" sizes="any" type="image/svg+xml">
+                
+        {% endblock %}
+
+        <title>
+        {% block title %}
+            {% if title %}  {{ title }} {% else %}{{_('Welcome to')}} {% endif %}
+        {% endblock %}
+        </title>
+    </head>
+    <body>
+      
+
+        {% block navbar %}
+        <nav class="navbar navbar-expand-lg  bg-light">
+            <div class="container-fluid">
+             
+                <img class="navbar-brand" src="{{ url_for('static', filename='img/logo.png') }}" height="80" width="150" alt="Base Flask Logo">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                  <ul class="navbar-nav ">
+                    <li class="nav-item">
+                      <a class="btn navbar-brand" href="{{ url_for('main.index') }}">
+                          <i class=" bi bi-house"></i> {{_('Home')}}
+                      </a>
+                    </li>
+
+                    {% if current_user.is_authenticated %}
+                    
+                
+                        <li class="dropdown">
+                        <a  class="btn btn navbar-brand dropdown-toggle disable" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                           
+                            <i class=" bi bi-person"></i>{{ _('Panel') }} {{  current_user.username }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+
+                            <a class="a dropdown-item" href="{{ url_for('auth.change_password') }}">{{ _('Change password') }}</a>
+                            </li>
+                       
+                        
+                      
+                        {% set user_roles = current_user.roles|map(attribute='name')|list %}
+                        {% if 'admin' in user_roles %}
+                            
+                            <div class="dropdown-divider"></div>
+                            
+                            <a class="a dropdown-item" href="{{ url_for('admin.index') }}">
+                                <i class=" bi bi-person"></i>{{ _('Panel') }} {{  current_user.username }}
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+                          {% endif %}
+                            <li>
+                            <a class="btn navbar-button" href="{{ url_for('auth.logout') }}">
+                                <i class=" bi bi-person"></i> {{ _('Logout') }}
+                            </a>
+                            </li>
+                        </li>
+                     </ul>
+                  </li>
+                
+                {% else %}
+                  <li class="dropdown">
+                    <a class="btn navbar-brand dropdown-toggle fixed-right" href=" " id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class=" bi bi-person"></i> {{ _('Login') }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                      <li>
+                        <a class="btn navbar-button" href="{{ url_for('auth.login') }}">
+                          <i class="bi bi-person"></i> {{ _('Login') }}
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="a dropdown-item" href="{{ url_for('auth.register') }}">{{_('You do not have an account? Sign up here')}}</a>
+                      </li>
+                    </ul>
+                  </li>
+                {% endif %}
+                
+                    <li>
+                      <form action="{{ url_for('main.set_language') }}" method="post" class=" navbar-button">
+                        <!-- Etiqueta oculta para lectores de pantalla -->
+                        <label for="language-selector" class="visually-hidden btn navbar-brand">Select Language</label>
+                        <i class="bi bi-translate"></i>
+                        <select name="language" id="language-selector">
+                            <option value="es" {% if session.language == 'es' %}selected{% endif %}>ES</option>
+                            <option value="en" {% if session.language == 'en' %}selected{% endif %}>EN</option>
+                        </select>
+                    </form>
+                    
+                  </li>
+                  
+                  </ul>
+                </div>
+            </div>
+          </nav>
+          
+        {% endblock %}
+     
+        
+        {% block messages %}
+            
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                <span>{{ message }}</span>
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <main >
+                {# Contenido de app#}
+
+                {% block app_content %}
+
+                {% endblock %}
+
+                
+           <div class="wrapper">
+              <br>
+              <p> Base Flask V 1  | © Copyright 2023 |</p>
+            </div>
+            {% endblock %}
+
+        </main>
+       
+
+        {% block scripts %}
+            <script src="{{ url_for('static', filename='js/flashMessages.js') }}"></script>
+            <!-- Optional JavaScript -->
+            {{ bootstrap.load_js() }}
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+        {% endblock %}
+        
+  </body>
+</html>
+
+

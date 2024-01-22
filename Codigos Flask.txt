@@ -1,0 +1,28 @@
+source venv/bin/activate
+set FLASK_ENV=development
+flask run --host 192.168.1.22 --port=5060 --debug
+
+
+
+Babel
+
+inicio 
+
+pybabel extract -F babel.cfg -k _l -o messages.pot .
+
+pybabel init -i messages.pot -d app/translations -l es
+
+pybabel compile -d app/translations
+
+actualizar
+
+
+pybabel extract -F babel.cfg -k _l -o messages.pot .
+
+
+pybabel update -i messages.pot -d app/translations
+
+
+pybabel compile -d app/translations
+
+

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+    {{ super() }}
+
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+{% endblock %}
+
+
+{% block title %}
+ {{ super() }}
+{% endblock %}
+
+
+{% block app_content %}
+<div class="titulo text-center">
+    <h1>{{ _('User Registration') }}</h1>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <img src="/static/img/logo.png" class="card-img-top mx-auto width200px"  alt="Imagen de la tarjeta">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('auth.register') }}">
+                        {{ registration_form.csrf_token }}
+
+                        <div class="row">
+                            <!-- Primera columna -->
+                            
+                                <div class="mb-3">
+                                    {{ registration_form.username.label(class="form-label") }}
+                                    {{ registration_form.username(class="form-control" + (" is-invalid" if registration_form.username.errors else "")) }}
+                                    {% for error in registration_form.username.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ registration_form.email.label(class="form-label") }}
+                                    {{ registration_form.email(class="form-control" + (" is-invalid" if registration_form.email.errors else "")) }}
+                                    {% for error in registration_form.email.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ registration_form.password.label(class="form-label") }}
+                                    {{ registration_form.password(class="form-control" + (" is-invalid" if registration_form.password.errors else "")) }}
+                                    {% for error in registration_form.password.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div class="mb-3">
+                                    {{ registration_form.confirm_password.label(class="form-label") }}
+                                    {{ registration_form.confirm_password(class="form-control" + (" is-invalid" if registration_form.confirm_password.errors else "")) }}
+                                    {% for error in registration_form.confirm_password.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                           
+                        </div>
+
+                        <div class="text-center">
+                            {{ registration_form.submit(class="btn navbar-brand") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

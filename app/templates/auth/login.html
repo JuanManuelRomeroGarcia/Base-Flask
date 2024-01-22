@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+    {{ super() }}
+
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+{% endblock %}
+
+
+{% block title %}
+ {{ super() }}
+{% endblock %}
+
+
+{% block app_content %}
+
+<div class="titulo  text-center">
+<h1>{{ _('Base Flask user login') }}</h1>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('auth.login', next=request.args.get('next')) }}">
+                        {{ login_form.csrf_token }}
+            
+                        <div class="mb-3">
+                            {{ login_form.username.label(class="form-label") }}
+                            {{ login_form.username(class="form-control") }}
+                            {% for error in login_form.username.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+            
+                        <div class="mb-3">
+                            {{ login_form.password.label(class="form-label") }}
+                            {{ login_form.password(class="form-control") }}
+                            {% for error in login_form.password.errors %}
+                                <div class="text-danger">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+            
+                        <div class="mb-3 form-check">
+                            {{ login_form.remember_me(class="form-check-input") }} 
+                            {{ login_form.remember_me.label(class="form-check-label") }}
+                        </div>
+            
+                        <input type="hidden" name="next" value="{{ request.args.get('next') }}">
+            
+                        <div class="text-center">
+                            <button type="submit" class="navbar-button"><i class=" bi bi-person"></i> {{ _('Login') }}</button>
+                        </div>
+                        <br>
+                        <div class="text-center">
+                        <a class="navbar-button" href="{{ url_for('auth.register') }}">
+                            <i class="bi bi-person"></i> {{_('Register')}}
+                        </a>
+                    </div>
+                    </form>
+            
+                    {% if _('Your email has not been verified. Please verify your email before login.') in get_flashed_messages() %}
+                        <div class="alert alert-warning mt-3">{{ _('Your email has not been verified. Please verify your email before login.') }}</div>
+                        <p><a href="{{ url_for('email.resend_verification_email') }}">{{ _('Do you need to resend the confirmation email?') }}</a></p>
+                    {% endif %}
+            
+                    <div class="text-center">
+                        <p><h2 class="mt-4"> {{ _('Forgot your password?') }} </h2></p>
+                        <p><a href="{{ url_for('auth.reset_password_request') }}" class="navbar-button">{{ _('Click to Reset') }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        
+{% if error_message %}
+<div id="modalalert" class="modalalert">
+    <span class="close-button">&times;</span>
+    <p>{{ error_message|safe }}</p>
+    <button id="close-modal-button" class="btn navbar-brand">{{ _('Close') }}</button>
+</div>
+
+<script nonce="{{csp_nonce()}}">
+    document.addEventListener('DOMContentLoaded', function() {
+        var modal = document.getElementById('modalalert');
+        var closeButtons = document.querySelectorAll('.close-button');
+        
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+        });
+
+        // Muestra el modal al cargar la página
+        modal.style.display = 'block';
+
+         // Agrega un manejador de eventos para el nuevo botón
+        var closeButton = document.getElementById('close-modal-button');
+        closeButton.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    });
+</script>
+
+{% endif %}
+
+{% endblock %}

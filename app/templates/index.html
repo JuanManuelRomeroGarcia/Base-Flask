@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block head_css %}
+    {{ super() }}
+    
+    {% endblock %}
+
+    {% block styles %}
+    {{super()}}
+    
+    {% endblock %}
+    
+    
+    {% block title %}
+     {{ super() }}
+    {% endblock %}
+
+
+    {% block app_content %}
+    <div class="title text-center">
+        {% if current_user.is_authenticated %}
+            <h1>{{_('Welcome')}} {{ current_user.username }}</h1>
+        {% else %}
+            
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+    
+                <div class="card mb-3">
+                    <div class="card-title ">
+                        <h1 class="text-center">{{ _('Introduction to the Flask Base Project') }}</h1>
+                    
+                        <div class="card-body">
+                            <div class="card-text text-left">
+                                <p>{{ _('Welcome to our Flask Base Project, a foundational framework for future web developments using Flask. This project is not only structured and tested for efficiency and security, but also incorporates key features to meet the needs of both developers and end-users.') }} <br> <strong>{{ _('This project supports multilingual functionality, offering translations in English and Spanish using Babel.') }}</strong></p>
+
+                                <h2>{{ _('Main Features:') }}</h2>
+                                <ol>
+                                    <li><strong>{{ _('Automated Database with Admin User:') }}</strong> <br> {{ _('The project includes an automatically configured database upon installation. It is designed for efficiency and security, with a pre-set admin user, simplifying system management and maintenance.') }}</li>
+                                    <li><strong>{{ _('Advanced Administrative Panel:') }}</strong> <br> {{ _('The intuitive and comprehensive admin panel allows for efficient user, role, and system settings management, providing full control over the project’s operation and security.') }}</li>
+                                    <li><strong>{{ _('Content Security Policy (CSP):') }}</strong> <br> {{ _('Security is a priority. We’ve implemented CSP policies to protect against content injection attacks like Cross-Site Scripting (XSS) and other injection-based attacks.') }}</li>
+                                    <li><strong>{{ _('Email Configuration and Password Recovery:') }}</strong> <br> {{ _('We understand the importance of communication and security in user management. The project includes an email configuration system and a secure password recovery feature for users.') }}</li>
+                                    <li><strong>{{ _('User and Role Management Model:') }}</strong> <br> {{ _('The project offers a comprehensive user and role management model, providing different access levels and functionalities, essential for complex permission hierarchies and user management.') }}</li>
+                                    <li><strong>{{ _('Advanced Logging System:') }}</strong> <br> {{ _('An advanced logging system records all relevant activities, aiding in problem identification and resolution, and adding an extra layer of security by monitoring system and user behavior.') }}</li>
+                                </ol>
+                            
+                                <p>{{ _('This Flask Base Project represents a comprehensive and adaptable solution, ideal for developers seeking a reliable foundation for their future web projects. Its combination of automation, security, and advanced features ensures that developers can focus on customization and unique feature development, knowing they have a solid and tested base.') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block scripts %}
+{{ super()}}
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head_css %}
+    {{ super() }}
+
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+{% endblock %}
+
+
+{% block title %}
+ {{ super() }}
+{% endblock %}
+
+
+{% block app_content %}
+<div class="container">
+    
+    <div class="text-center titulo">
+        <h1>{{ _('Error 500') }}</h1>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body text-center">
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ _('Oops!') }}</strong> {{ _('Something went wrong.') }}
+            </div>
+            <div class="alert alert-danger" role="alert">
+                <strong>{{ _('Error:') }}</strong> &nbsp;&nbsp;
+                {{ error_message }}
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3">
+        <div class="card-body text-center">
+            <p>{{ _('The server encountered an internal error and was unable to complete your request.') }}</p>
+            <p>{{ _('Please contact the server administrator at') }} <a href="mailto:{{ mail_admin }}">{{ mail_admin }}</a>
+            {{ _('to inform them of the time this error occurred and the actions you performed just before this error.') }}</p>
+        </div>
+        <div class="mb-3 text-center">
+            <input id="volver" type="button" class="btn navbar-brand" value="{{ _('Go Back') }}" />
+        </div>
+
+    </div>
+
+</div>
+<script nonce="{{csp_nonce()}}">
+    document.addEventListener('DOMContentLoaded', function() {
+      var backButton = document.getElementById('volver');
+      if (backButton) {
+          backButton.addEventListener('click', function() {
+              history.back(-1);
+          });
+      }
+    });
+    </script>
+{% endblock %}
