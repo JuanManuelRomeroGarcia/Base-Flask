@@ -1,6 +1,6 @@
 /.venv/
 /logs/
 /instance/
-.env
+Xiaohack.env
 **/__pycache__/
 *.pyc

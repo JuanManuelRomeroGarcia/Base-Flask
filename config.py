@@ -4,7 +4,7 @@ import os
 
 
 # Carga las variables de entorno desde el archivo .env
-load_dotenv('.env')
+load_dotenv('Xiaohack.env')
 
 
 class Config:
@@ -13,7 +13,7 @@ class Config:
     DEBUG = os.getenv("DEBUG", "False").lower() == "true"
     TESTING = os.getenv("TESTING", "False").lower() == "true"
 
-    ADMIN = os.getenv("ADMIN", False)
+    ADMIN = os.getenv("ADMIN")
     ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 
 

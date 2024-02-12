@@ -4,8 +4,8 @@ from logging.handlers import RotatingFileHandler
 
 
 def configure_logging(app, config):
-    print("Configuring logging...")
-    print(f"Debug mode: {app.debug}, Testing mode: {app.testing}")
+    #print("Configuring logging...")
+    #print(f"Debug mode: {app.debug}, Testing mode: {app.testing}")
 
     if not app.debug and not app.testing:
         log_directory = config.LOG_DIR

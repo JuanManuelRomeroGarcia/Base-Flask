@@ -81,6 +81,7 @@ color: var(--color-text);
 
 /* NAVBAR STYLES */
 /* Estilo general del navbar */
+
 .navbar {
   background-color: rgba(255, 255, 255, 0.95); /* Blanco con ligera transparencia */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
@@ -298,4 +299,12 @@ margin-bottom: 2.5rem!important;
 }
 textarea{
 width: 100%!important;
+}
+
+.card {
+  margin: 35px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.527);
+  font-weight: bold;
+
 }
